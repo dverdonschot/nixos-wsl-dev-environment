@@ -67,8 +67,8 @@ ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix
 ```
 
 ## Windows Nerdfont to render icons correctly
-Some of the elements used in oh-my-posh need nerdfonts installed on Windows.
-After you run `nixos-rebuild switch` you have to go to terminal settings, 
+Some of the elements used in oh-my-posh need nerdfonts installed on Windows and a Nerdfont selected in the terminal program.
+After you run `nixos-rebuild switch` go to terminal settings, 
 select your WSL distrubtion, go to appearance, fonts and select a nerdfont
 
 ### How to install Nerdfont on Windows
