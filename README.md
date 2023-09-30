@@ -68,6 +68,13 @@ If you don't change folder root starts at /, and the repo will be cloned at /nix
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix-backup
 ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
 ```
+## nixos-rebuild switch
+Now rebuild nixos with the configuration.nix from our repo.
+
+```
+nixos-rebuild switch
+```
+After you deploy the code you need to login again for the changes to take affect.
 
 ## Windows Nerdfont to render icons correctly
 Some of the elements used in oh-my-posh need nerdfonts installed on Windows,
