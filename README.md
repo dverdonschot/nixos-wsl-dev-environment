@@ -25,11 +25,23 @@ nix build github:nix-community/NixOS-WSL#nixosConfigurations.mysystem.config.sys
 ```powershell
  wsl --import NixOS .\NixOS\ nixos-wsl-x86_64-linux.tar.gz --version 2
 ```
+## nixos as root
+Untill I better understand Nixos and root / normal user, we do everything as root user.
+Nixos can do sudo su to become root user.
+
+```
+sudo su
+```
 
 ## Install temporary programs.
+To clone the git repo and edit with vim install both with nix-env
+```
 nix-env -i git vim
+```
 
 ## Configure home-manager repo
+
+Make sure all the correct repositories are present before we run `nixos-rebuild switch`
 
 ```
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
@@ -40,16 +52,18 @@ nix-channel --update
 ```
 
 ## Clone repo
+Clone repository from github.
 
 ```
 git clone git@github.com:dverdonschot/nixos-wsl-dev-environment.git
 ```
 
 ## Replace configuration
+If you don't change folder root starts at /, and the repo will be cloned at /nixos-wsl-dev-environment
 
 ```
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix-backup
-ln -s configuration.nix /etc/nixos/configuration.nix 
+ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
 ```
 
 ## Troubleshooting
