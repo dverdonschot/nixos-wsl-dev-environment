@@ -90,12 +90,12 @@ https://www.nerdfonts.com/font-downloads
 
 ### No Internet connectivity / DNS not working
 /etc/wsl.conf and /etc/resolv.conf configure DNS.
-
+```
 /etc/wsl.conf
 generateResolvConf can be turned to false.
 /etc/resolv.conf
 nameserver 1.1.1.1
-
+```
 ### fchmod() of /tmp/.X11-unix failed: Read-only file system
 
 ```bash
