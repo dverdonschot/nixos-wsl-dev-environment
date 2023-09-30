@@ -13,6 +13,9 @@ cd wsl
 ```
 
 ## Build latest version
+
+The latest release version is quit old, but never updated, main branch is updated and you can build a recent image yourself.
+
 To build the latest version of NixOS-WSL you need a linux prompt with Nix installed with flakes enabled.
 Initially use the latest release, and then build your own image based on main.
 
@@ -67,7 +70,8 @@ ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix
 ```
 
 ## Windows Nerdfont to render icons correctly
-Some of the elements used in oh-my-posh need nerdfonts installed on Windows and a Nerdfont selected in the terminal program.
+Some of the elements used in oh-my-posh need nerdfonts installed on Windows,
+and a Nerdfont selected in the terminal program for your wsl distribution.
 After you run `nixos-rebuild switch` go to terminal settings, 
 select your WSL distrubtion, go to appearance, fonts and select a nerdfont
 
@@ -76,6 +80,14 @@ You can download Nerdfonts and then add them to your Windows fonts.
 https://www.nerdfonts.com/font-downloads
 
 ## Troubleshooting
+
+### No Internet connectivity / DNS not working
+/etc/wsl.conf and /etc/resolv.conf configure DNS.
+
+/etc/wsl.conf
+generateResolvConf can be turned to false.
+/etc/resolv.conf
+nameserver 1.1.1.1
 
 ### fchmod() of /tmp/.X11-unix failed: Read-only file system
 
