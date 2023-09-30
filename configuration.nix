@@ -75,20 +75,6 @@ in
     };
   };
 
-  users.users.ewt.isNormalUser = true;
-  users.users.ewt.extraGroups = ["wheel" "docker"];
-
-  security.sudo.extraRules = [
-    { 
-      users = [ "ewt" ];
-      commands = [
-        { command = "ALL" ;
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
   programs.bash = {
     interactiveShellInit = ''
       # initializing Tmux
