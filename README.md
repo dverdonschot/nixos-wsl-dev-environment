@@ -34,6 +34,9 @@ nix-env -i git vim
 ```
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
 nix-channel --update
+nix-channel --remove nixos
+nix-channel --add https://nixos.org/channels/nixos-23.05 nixos
+nix-channel --update
 ```
 
 ## Clone repo
@@ -55,4 +58,10 @@ ln -s configuration.nix /etc/nixos/configuration.nix
 
 ```bash
 sudo mount -o remount,rw /tmp/.X11-unix
+```
+
+### rsync: [sender] change_dir "/nix/store/5jghxc14h21772flmd4ldpqy40rvl3xa-nixos-system-nixos-23.05.3881.5cfafa12d573/sw/share/icons" failed: No such file or directory (2)
+
+```bash
+mkdir /nix/store/5jghxc14h21772flmd4ldpqy40rvl3xa-nixos-system-nixos-23.05.3881.5cfafa12d573/sw/share/icons
 ```
