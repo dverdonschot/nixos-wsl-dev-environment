@@ -66,6 +66,15 @@ mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix-backup
 ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
 ```
 
+## Windows Nerdfont to render icons correctly
+Some of the elements used in oh-my-posh need nerdfonts installed on Windows.
+After you run `nixos-rebuild switch` you have to go to terminal settings, 
+select your WSL distrubtion, go to appearance, fonts and select a nerdfont
+
+### How to install Nerdfont on Windows
+You can download Nerdfonts and then add them to your Windows fonts.
+https://www.nerdfonts.com/font-downloads
+
 ## Troubleshooting
 
 ### fchmod() of /tmp/.X11-unix failed: Read-only file system
