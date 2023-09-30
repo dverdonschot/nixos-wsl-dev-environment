@@ -39,7 +39,7 @@ nix-channel --update
 ## Clone repo
 
 ```
-git clone git@github.com:dverdonschot/workstation_config.git
+git clone git@github.com:dverdonschot/nixos-wsl-dev-environment.git
 ```
 
 ## Replace configuration
