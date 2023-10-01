@@ -1,9 +1,9 @@
 # Nixos on WSL 
 
-This is my try to create a Nixos on WSL "develop environment".
+This is my try at creating a Nixos on WSL "develop environment".
 
-Set up of nvim editor, and vscode-server to connect VSCode on Windows to WSL.
-The aim is to be able to develop with Python, Typescript, CDK, AWS, Azure, Terraform.
+The aim is to be able to develop in style with Python, Typescript, CDK, AWS, Azure, Terraform.
+
 The setup contains a customized prompt that is helpfull in many ways.
 
 https://github.com/nix-community/NixOS-WSL/
