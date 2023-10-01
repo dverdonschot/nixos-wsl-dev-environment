@@ -55,19 +55,19 @@ sudo su
 
 ## Install temporary programs.
 To clone the git repo and edit with vim install both with nix-env
+
 ```
 nix-env -i git vim
 ```
 
+In case of problems make sure to check if /etc/resolv.conf is configured to a working DNS.
+
 ## Configure home-manager repo
 
-Make sure all the correct repositories are present before we run `nixos-rebuild switch`
+Make sure to add the home-manager repository before we run `nixos-rebuild switch` the first time.
 
 ```
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
-nix-channel --update
-nix-channel --remove nixos
-nix-channel --add https://nixos.org/channels/nixos-23.05 nixos
 nix-channel --update
 ```
 
@@ -75,7 +75,7 @@ nix-channel --update
 Clone repository from github.
 
 ```
-git clone git@github.com:dverdonschot/nixos-wsl-dev-environment.git
+git clone http://github.com/dverdonschot/nixos-wsl-dev-environment.git
 ```
 
 ## Replace configuration

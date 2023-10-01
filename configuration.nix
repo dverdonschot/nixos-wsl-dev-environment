@@ -53,9 +53,12 @@ in
     python311
     python311Packages.virtualenv
     python311Packages.pyyaml
+    # Node
     nodejs
     nodePackages.npm
     nodePackages.eslint
+    # Docker
+    docker-compose
   ];
 
 
@@ -85,7 +88,7 @@ in
       setSocketVariable = true;
     };
   };
-  users.users.nixos.extraGroups = ["wheel" "docker"];
+  users.users.nixos.extraGroups = ["wheel"];
 
   system.stateVersion = "23.05";
 
