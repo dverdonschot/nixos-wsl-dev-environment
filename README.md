@@ -1,6 +1,25 @@
 # Nixos on WSL 
 
+This is my try to create a Nixos on WSL "develop environment".
+
+Set up of nvim editor, and vscode-server to connect VSCode on Windows to WSL.
+The aim is to be able to develop with Python, Typescript, CDK, AWS, Azure, Terraform.
+The setup contains a customized prompt that is helpfull in many ways.
+
 https://github.com/nix-community/NixOS-WSL/
+
+## Users
+Currently the setup is to use the standard nixos user with the ability to become root.
+
+It's possible to copy the codeblock for Nixos user and create a new user, 
+you will also have to create the user in the environment.
+
+## Installed features
+* tmux with dracula theme
+* nvim editor with dracula theme
+* vscode-server for vscode wsl support
+* oh-my-posh with customized dracula theme 
+* python virtualenv to build new virtual environments
 
 
 ## wsl folder
