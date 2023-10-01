@@ -75,15 +75,14 @@ nix-channel --update
 Clone repository from github.
 
 ```
-git clone http://github.com/dverdonschot/nixos-wsl-dev-environment.git
+git clone https://github.com/dverdonschot/nixos-wsl-dev-environment.git
 ```
 
 ## Replace configuration
-If you don't change folder root starts at /, and the repo will be cloned at /nixos-wsl-dev-environment
-
+Now make a backup of the existing `/etc/nixos/configuration.nix, and softlink the configuration.nix for the cloned repository to `/etc/nixos/configuration.nix`
 ```
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix-backup
-ln -s /nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
+ln -s /home/nixos/nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
 ```
 ## nixos-rebuild switch
 Now rebuild nixos with the configuration.nix from our repo.
