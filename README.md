@@ -22,31 +22,29 @@ you will also have to create the user in the environment.
 * python virtualenv to build new virtual environments
 
 
+
 ## wsl folder
-Create a WSL folder where you can store tar files and create the directories for your WSL deployments.
+
+In Windows create a WSL folder where you can store tar files and create the directories for your WSL deployments.
 
 ```powershell
 cd ~
 mkdir wsl
 cd wsl
 ```
+## Download Release
 
-## Build latest version
+Download the latest version of NixOS-WSL (nixos-wsl.tar.gz) and copy it to the wsl folder.
 
-The latest release version is quit old, but never updated, main branch is updated and you can build a recent image yourself.
+[Nixos WSL Releases](https://github.com/nix-community/NixOS-WSL/releases)
 
-To build the latest version of NixOS-WSL you need a linux prompt with Nix installed with flakes enabled.
-Initially use the latest release, and then build your own image based on main.
-
-```bash
-nix build github:nix-community/NixOS-WSL#nixosConfigurations.mysystem.config.system.build.installer
-```
 
 ## Import image with powershell
 
 ```powershell
- wsl --import NixOS .\NixOS\ nixos-wsl-x86_64-linux.tar.gz --version 2
+ wsl --import NixOS .\NixOS\nixos-wsl.tar.gz --version 2
 ```
+
 ## nixos as root
 Untill I better understand Nixos and root / normal user, we do everything as root user.
 Nixos can do sudo su to become root user.
