@@ -22,14 +22,8 @@ in
     automountPath = "/mnt";
     defaultUser = "nixos";
     startMenuLaunchers = true;
-
-    # Enable native Docker support
-    docker-native.enable = true;
-
-    # Enable integration with Docker Desktop (needs to be installed)
-    #docker-desktop.enable = true;
-
   };
+
   # https://github.com/nix-community/nixos-vscode-server
   # Start service in nixos user: systemctl --user enable auto-fix-vscode-server.service --now
   services.vscode-server.enable = true;
@@ -83,6 +77,15 @@ in
       eval "$(oh-my-posh --init --shell bash --config /home/nixos/.config/oh-my-posh/dracula-modified-by-ewt.omp.json)"
     '';
   };
+
+  virtualisation.docker = { 
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  users.users.nixos.extraGroups = ["wheel" "docker"];
 
   system.stateVersion = "23.05";
 
