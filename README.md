@@ -1,6 +1,6 @@
 # Nixos on WSL 
 
-This is my try at creating a Nixos on WSL "develop environment".
+This is my try at creating a Nixos on WSL "development environment" example.
 
 The aim is to be able to develop in style with Python, Typescript, CDK, AWS, Azure, Terraform.
 
@@ -37,8 +37,9 @@ Download the latest version of NixOS-WSL (nixos-wsl.tar.gz) and copy it to the w
 ## Import image with powershell
 
 ```powershell
- wsl --import NixOS .\NixOS\nixos-wsl.tar.gz --version 2
+ wsl --import NixOS nixos-wsl.tar.gz --version 2
 ```
+After the import is completed, restart the terminal, and the new distribution should show up.
 
 ## nixos as root
 Untill I better understand Nixos and root / normal user, we do everything as root user.
@@ -55,7 +56,7 @@ To clone the git repo and edit with vim install both with nix-env
 nix-env -i git vim
 ```
 
-In case of problems make sure to check if /etc/resolv.conf is configured to a working DNS.
+In case of problems make sure to check if /etc/resolv.conf is configured to a working DNS (1.1.1.1).
 
 ## Configure home-manager repo
 
@@ -75,10 +76,12 @@ git clone https://github.com/dverdonschot/nixos-wsl-dev-environment.git
 
 ## Replace configuration
 Now make a backup of the existing `/etc/nixos/configuration.nix, and softlink the configuration.nix for the cloned repository to `/etc/nixos/configuration.nix`
+
 ```
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix-backup
 ln -s /home/nixos/nixos-wsl-dev-environment/configuration.nix /etc/nixos/configuration.nix 
 ```
+
 ## nixos-rebuild switch
 Now rebuild nixos with the configuration.nix from our repo.
 
