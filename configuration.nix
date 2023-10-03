@@ -70,7 +70,7 @@ in
   ];
   fonts.fontconfig = {
     defaultFonts = {
-      monospace = ["FireCode"];
+      monospace = ["FiraCode"];
     };
   };
 
