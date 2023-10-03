@@ -49,6 +49,8 @@ in
     hack-font
     awscli
     git-remote-codecommit
+    nodePackages.aws-cdk
+    azure-cli
     # python3.11
     python311
     python311Packages.virtualenv
