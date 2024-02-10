@@ -1,37 +1,30 @@
-{ lib, pkgs, config, modulesPath, ... }:
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-let 
+# NixOS-WSL specific options are documented on the NixOS-WSL repository:
+# https://github.com/nix-community/NixOS-WSL
+
+{ config, lib, pkgs, ... }:
+
+let
   username_var = "ewt";
 in
 
-with lib;
-let
-  nixos-wsl = import ./nixos-wsl;
-in
 {
   imports = [
-    "${modulesPath}/profiles/minimal.nix"
-    nixos-wsl.nixosModules.wsl
+    # include NixOS-WSL modules
+    <nixos-wsl/modules>
     <home-manager/nixos>
     (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
   ];
-
-
+  
   wsl = {
     enable = true;
-    automountPath = "/mnt";
+    wslConf.automount.root = "/mnt";
     defaultUser = "nixos";
     startMenuLaunchers = true;
   };
-
-  # https://github.com/nix-community/nixos-vscode-server
-  # Start service in nixos user: systemctl --user enable auto-fix-vscode-server.service --now
-  services.vscode-server.enable = true;
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   environment.systemPackages = with pkgs; [
     wget
@@ -44,7 +37,6 @@ in
     nmap
     tree
     gtk3
-    font-awesome
     powerline-fonts
     hack-font
     awscli
@@ -63,9 +55,22 @@ in
     docker-compose
   ];
 
+  # https://github.com/nix-community/nixos-vscode-server
+  # Start service in nixos user: systemctl --user enable auto-fix-vscode-server.service --now
+  services.vscode-server.enable = true;
+
+  virtualisation.docker = { 
+    enable = true;
+    enableOnBoot = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  users.users.nixos.extraGroups = ["wheel" "docker"];
 
   fonts.fontDir.enable = true; 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
   fonts.fontconfig = {
@@ -79,20 +84,10 @@ in
       # initializing Tmux
       # [ "$EUID" -ne 0 ] && [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
       # Loading ohh my posh config
-      eval "$(oh-my-posh --init --shell bash --config /home/nixos/.config/oh-my-posh/dracula-modified-by-ewt.omp.json)"
+      eval "$(oh-my-posh --init --shell bash --config /home/nixos/.config/oh-my-posh/posh-dverdonschot.omp.json)"
     '';
   };
 
-  virtualisation.docker = { 
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-  users.users.nixos.extraGroups = ["wheel"];
-
-  system.stateVersion = "23.05";
 
   # Home-manager
 
@@ -146,8 +141,15 @@ in
       '';
     };
     xdg.configFile.oh-my-posh = {
-      source = ./config/oh-my-posh;
+      source = ./config;
       recursive = true;
     };
   };
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It's perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
